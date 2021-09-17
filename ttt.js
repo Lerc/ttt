@@ -26,7 +26,8 @@ SOFTWARE.
 
 ttt=(td, only_this_index=-1,stack_depth=0) => {
 	return td.filter((d,i) => only_this_index < 0 || i == only_this_index).map(d => {
-		let i = 0,
+		let i = 3,
+		  offsets = [-1,1,0],
 			e = document.createElement('canvas'),
 			c = e.getContext('2d'),
 			rgba_from_2byte = c => 
@@ -34,15 +35,14 @@ ttt=(td, only_this_index=-1,stack_depth=0) => {
 			fill_rect = (x, y, w, h, ...colors) =>
 				colors.map((color, j) => {
 					c.fillStyle = rgba_from_2byte(color);
-					c.fillRect(x+[-1,1,0][j], y+[-1,1,0][j], w, h);
+					c.fillRect(x+offsets[j], y+offsets[j], w, h);
 				})
-			;
 		// Set up canvas width and height
-		let W = e.width = d[i++];
-		let H = e.height = d[i++];
+		let W = e.width = d[0];
+		let H = e.height = d[1];
 
 		// Fill with background color
-		fill_rect(0, 0, W, H, 0,0, d[i++]);
+		fill_rect(0, 0, W, H, 0,0, d[2]);
 
 		// Perform all the steps for this texture
 		while (i < d.length) {
