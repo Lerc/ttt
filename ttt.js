@@ -131,13 +131,14 @@ ttt=(td, only_this_index=-1,stack_depth=0) => {
 
 
 	return td.filter((d,i) => only_this_index < 0 || i == only_this_index).map(d => {
-		let i = 3,
+		let i = 0,
 		  offsets = [-1,1,0],
 			e = document.createElement('canvas'),
 			c = e.getContext('2d'),
 			rgba_from_2byte = c => 
 				("#"+(c|65536).toString(16).slice(-4)),
 			
+				
 			fill_rect = (x, y, w, h, color) => {
 				c.fillStyle = rgba_from_2byte(color);
 				c.fillRect(x, y, w, h);
@@ -150,11 +151,11 @@ ttt=(td, only_this_index=-1,stack_depth=0) => {
 			}
 
 		// Set up canvas width and height
-		let W = e.width = d[0];
-		let H = e.height = d[1];
+		let W = e.width = d[i++];
+		let H = e.height = d[i++];
 
 		// Fill with background color
-		fill_rect(0, 0, W, H, d[2]);
+		fill_rect(0, 0, W, H, d[i++]);
 
 		// Perform all the steps for this texture
 		while (i < d.length) {
@@ -218,7 +219,8 @@ ttt=(td, only_this_index=-1,stack_depth=0) => {
 						}
 					}
 				},
-
+				// 6 - Change the seed for the random number generator
+				seed => {random = makeRandom(seed)}
 			][d[i++]];
 			f(...d.slice(i, i+=f.length));
 		}
