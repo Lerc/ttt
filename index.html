@@ -147,7 +147,7 @@
 		}
 
 		#texture-collection {
-			height: 240px;
+			height: 290px;
 			overflow-y: auto;
 		}
 
@@ -725,16 +725,50 @@ TTTE.Operations = {
 		],
 		"alpha": TTTE.Number(15, 0, 15),
 	},
-	//5 
+	//5
+	"Transformed previous texture": {
+		"texture index": TTTE.Number(0, 0),
+		"x/y": [
+			TTTE.Number(0),
+			TTTE.Number(0),
+		],
+		"hskew/vskew": [
+			TTTE.Number(0),
+			TTTE.Number(0),
+		],
+		"hscale/vscale": [
+			TTTE.Number(1),
+			TTTE.Number(1),
+		],
+		"alpha": TTTE.Number(15, 0, 15),
+		"blend mode": TTTE.Number(0, 0, 9),
+	},
+	//6 
 	"Stackie pattern": {
 		base: TTTE.Color('#0', 15),
 		over: TTTE.Color('#ffffff', 15),
-		text: TTTE.Text('x1x-*5*dx4**y3*p+y!-'),
+		code: TTTE.Text('x1x-*5*dx4**y3*p+y!-'),
 	},
-	//6 
+	//7 
 	"Change Random Seed": {
 		seed :TTTE.Number(42)
-	}
+	},
+	//8 
+	"Remap colours": {
+		"palette code": TTTE.Text('x'),
+		"set alpha" :TTTE.Number(255,0,255)
+	},
+	//9 
+		"SVG Path": {
+		"path code": TTTE.Text('M10,45C 15,45 13,5 25,5S 35,45 45,45'),
+		"fill color": TTTE.Color('#208040', 15),
+		"outline color/thickness": 
+			[ TTTE.Color('#ffff40', 15), 
+				TTTE.Number(3)
+			]
+		
+	},
+
 };
 
 let ttte = new TTTE();
